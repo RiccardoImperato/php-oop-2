@@ -21,10 +21,11 @@ require_once __DIR__ . '/Models/Products.php';
 
 <body>
     <div class="container">
+        <h1>PHP Petshop</h1>
         <ul>
             <li class="card">
                 <figure>
-                    <img src="https://www.cuccia-per-cani.com/wp-content/uploads/2018/12/31uaaHXJYGL.jpg" alt="">
+                    <img src="https://www.cuccia-per-cani.com/wp-content/uploads/2018/12/31uaaHXJYGL.jpg" alt="Osso Smart">
                 </figure>
                 <div class="info">
                     <h3><?php echo $osso_smart->name; ?></h3>
@@ -42,7 +43,7 @@ require_once __DIR__ . '/Models/Products.php';
             </li>
             <li class="card">
                 <figure>
-                    <img src="https://www.my-personaltrainer.it/2021/04/13/cibo-secco-per-il-gatto-orig.jpeg" alt="">
+                    <img src="https://www.my-personaltrainer.it/2021/04/13/cibo-secco-per-il-gatto-orig.jpeg" alt="Crocchette">
                 </figure>
                 <div class="info">
                     <h3><?php echo $crocchette->name; ?></h3>
@@ -60,7 +61,7 @@ require_once __DIR__ . '/Models/Products.php';
             </li>
             <li class="card">
                 <figure>
-                    <img src="https://img.kwcdn.com/product/1e23310c6c/44d3d2f9-fa82-454f-bd9e-b0da5cbf9c39_800x800.jpeg?imageView2/2/w/800/q/70" alt="">
+                    <img src="https://img.kwcdn.com/product/1e23310c6c/44d3d2f9-fa82-454f-bd9e-b0da5cbf9c39_800x800.jpeg?imageView2/2/w/800/q/70" alt="Lettino">
                 </figure>
                 <div class="info">
                     <h3><?php echo $lettino->name; ?></h3>
