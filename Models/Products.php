@@ -6,13 +6,14 @@ class Product
 {
     use PriceTrait;
 
+    private $image;
     private $name;
-    // private $price;
     private $category;
-    public $type = '';
+    public $type = 'Merchandise';
 
-    function __construct($_name, $_price, Category $_category)
+    function __construct($_image, $_name, $_price, Category $_category)
     {
+        $this->setImage($_image);
         $this->setName($_name);
         $this->setCategory($_category);
 
@@ -21,6 +22,24 @@ class Product
         } catch (Exception $error) {
             echo "Errore durante la creazione del prodotto:  " . $error->getMessage();
         }
+    }
+
+    /**
+     * Get the value of image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */
+    public function setImage($_image)
+    {
+        $this->image = $_image;
     }
 
     /**

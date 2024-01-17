@@ -10,27 +10,29 @@ $dog = new Category('Cane', '<i class="fa-solid fa-dog"></i>');
 $cat = new Category('Gatto', '<i class="fa-solid fa-cat"></i>');
 
 // Product 
-$collare = new Product('Collare', 5, $dog);
+$collare_cane = new Product('https://www.perilcane.it/3189-large_default/collare-in-pelle-con-borchie-per-cani-medio-grandi.jpg', 'Collare', 5, $dog);
+$collare_gatto = new Product('https://croci.net/wp-content/uploads/2023/02/Collare_per_gatto_Bobby_Safe_Blu.jpg', 'Collare', 5, $cat);
 
 //Toy
-$osso_smart = new Toy('Osso smart', 15, $dog);
+$osso_smart = new Toy('https://www.cuccia-per-cani.com/wp-content/uploads/2018/12/31uaaHXJYGL.jpg', 'Osso smart', 15, $dog);
 $osso_smart->setMaterial('Plastica');
 
 // Food
-$cibo_cane = new Food('Crocchette', 10, $dog);
+$cibo_cane = new Food('https://www.razzedicani.net/wp-content/uploads/2023/08/crocchette-cani.jpg', 'Crocchette', 10, $dog);
 $cibo_cane->setWeight(5);
 $cibo_cane->setExpiration_date('01/2025');
-$cibo_gatto = new Food('Crocchette', 10, $cat);
+$cibo_gatto = new Food('https://www.my-personaltrainer.it/2021/04/13/cibo-secco-per-il-gatto-orig.jpeg', 'Crocchette', 10, $cat);
 $cibo_gatto->setWeight(2);
 $cibo_gatto->setExpiration_date('10/2024');
 
 //Bed
-$cuccia = new Bed('Cuccia', 20, $cat);
+$cuccia = new Bed('https://img.kwcdn.com/product/1e23310c6c/44d3d2f9-fa82-454f-bd9e-b0da5cbf9c39_800x800.jpeg?imageView2/2/w/800/q/70', 'Cuccia', 20, $cat);
 $cuccia->setSize('S');
 
 // Products
 $products = [
-    $collare,
+    $collare_cane,
+    $collare_gatto,
     $osso_smart,
     $cibo_cane,
     $cibo_gatto,
@@ -62,13 +64,16 @@ $products = [
         <ul>
             <?php foreach ($products as $product) : ?>
                 <li class="card">
+                    <figure>
+                        <img src="<?php echo $product->getImage() ?>" alt="<?php echo $product->getName() ?>">
+                    </figure>
                     <div class="info">
                         <h3><?php echo $product->getName() ?></h3>
                         <div>
-                            <?php echo $product->getCategory()->getName() . " " . $product->getCategory()->getIcon()  ?>
+                            Categoria: <?php echo $product->getCategory()->getName() . " " . $product->getCategory()->getIcon()  ?>
                         </div>
                         <div>
-                            <?php echo $product->getPrice() ?>
+                            Prezzo: <?php echo $product->getPrice() ?>
                             <i class="fa-solid fa-euro-sign"></i>
                         </div>
                         <div>
