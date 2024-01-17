@@ -1,5 +1,42 @@
 <?php
 require_once __DIR__ . '/Models/Products.php';
+require_once __DIR__ . '/Models/Category.php';
+require_once __DIR__ . '/Models/Food.php';
+require_once __DIR__ . '/Models/Toy.php';
+require_once __DIR__ . '/Models/Bed.php';
+
+// Category
+$dog = new Category('Cane', '<i class="fa-solid fa-dog"></i>');
+$cat = new Category('Gatto', '<i class="fa-solid fa-cat"></i>');
+
+// Product 
+$collare = new Product('Collare', 5, $dog);
+
+//Toy
+$osso_smart = new Toy('Osso smart', 10, $dog);
+$osso_smart->setMaterial('Plastica');
+
+// Food
+$cibo_cane = new Food('Crocchette', 10, $dog);
+$cibo_cane->setWeight(5);
+$cibo_cane->setExpiration_date('01/2025');
+$cibo_gatto = new Food('Crocchette', 10, $cat);
+$cibo_gatto->setWeight(2);
+$cibo_gatto->setExpiration_date('10/2024');
+
+//Bed
+$cuccia = new Bed('Cuccia', 20, $cat);
+$cuccia->setSize('S');
+
+// Products
+$products = [
+    $collare,
+    $osso_smart,
+    $cibo_cane,
+    $cibo_gatto,
+    $cuccia
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -23,60 +60,23 @@ require_once __DIR__ . '/Models/Products.php';
     <div class="container">
         <h1>PHP Petshop</h1>
         <ul>
-            <li class="card">
-                <figure>
-                    <img src="https://www.cuccia-per-cani.com/wp-content/uploads/2018/12/31uaaHXJYGL.jpg" alt="Osso Smart">
-                </figure>
-                <div class="info">
-                    <h3><?php echo $osso_smart->name; ?></h3>
-                    <div>
-                        Categoria: <?php echo $osso_smart->get_icon() ?>
+            <?php foreach ($products as $product) : ?>
+                <li class="card">
+                    <div class="info">
+                        <h3><?php echo $product->getName() ?></h3>
+                        <div>
+                            <?php echo $product->getCategory()->getName() . " " . $product->getCategory()->getIcon()  ?>
+                        </div>
+                        <div>
+                            <?php echo $product->getPrice() ?>
+                            <i class="fa-solid fa-euro-sign"></i>
+                        </div>
+                        <div>
+                            <?php echo $product->type ?>
+                        </div>
                     </div>
-                    <div>
-                        Tipo: <?php echo $osso_smart->type; ?>
-                    </div>
-                    <div>
-                        Prezzo: <?php echo $osso_smart->price; ?>
-                        <i class="fa-solid fa-euro-sign"></i>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <figure>
-                    <img src="https://www.my-personaltrainer.it/2021/04/13/cibo-secco-per-il-gatto-orig.jpeg" alt="Crocchette">
-                </figure>
-                <div class="info">
-                    <h3><?php echo $crocchette->name; ?></h3>
-                    <div>
-                        Categoria: <?php echo $crocchette->get_icon() ?>
-                    </div>
-                    <div>
-                        Tipo: <?php echo $crocchette->type; ?>
-                    </div>
-                    <div>
-                        Prezzo: <?php echo $crocchette->price; ?>
-                        <i class="fa-solid fa-euro-sign"></i>
-                    </div>
-                </div>
-            </li>
-            <li class="card">
-                <figure>
-                    <img src="https://img.kwcdn.com/product/1e23310c6c/44d3d2f9-fa82-454f-bd9e-b0da5cbf9c39_800x800.jpeg?imageView2/2/w/800/q/70" alt="Lettino">
-                </figure>
-                <div class="info">
-                    <h3><?php echo $lettino->name; ?></h3>
-                    <div>
-                        Categoria: <?php echo $lettino->get_icon() ?>
-                    </div>
-                    <div>
-                        Tipo: <?php echo $lettino->type; ?>
-                    </div>
-                    <div>
-                        Prezzo: <?php echo $lettino->price; ?>
-                        <i class="fa-solid fa-euro-sign"></i>
-                    </div>
-                </div>
-            </li>
+                </li>
+            <?php endforeach ?>
         </ul>
     </div>
 </body>

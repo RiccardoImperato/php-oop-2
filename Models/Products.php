@@ -1,49 +1,76 @@
 <?php
+require_once __DIR__ . '/Category.php';
 
 class Product
 {
-    public $name;
-    public $price;
+    private $name;
+    private $price;
+    private $category;
+    public $type = '';
 
-    function __construct($_name, $_price)
+    function __construct($_name, $_price, Category $_category)
+    {
+        $this->setName($_name);
+        $this->setPrice($_price);
+        $this->setCategory($_category);
+    }
+
+    /**
+     * Get the value of name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */
+    public function setName($_name)
     {
         $this->name = $_name;
-        $this->price = $_price;
     }
-}
 
-class Category extends Product
-{
-    public $category;
-
-    function __construct($_name, $_price, $_category)
+    /**
+     * Get the value of category
+     */
+    public function getCategory()
     {
-        parent::__construct($_name, $_price);
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */
+    public function setCategory($_category)
+    {
         $this->category = $_category;
     }
 
-    public function get_icon()
+    /**
+     * Get the value of price
+     */
+    public function getPrice()
     {
-        if ($this->category === 'Cane') {
-            echo "<i class='fa-solid fa-dog'></i>";
-        } elseif ($this->category === 'Gatto') {
-            echo "<i class='fa-solid fa-cat'></i>";
-        }
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */
+    public function setPrice($_price)
+    {
+        $this->price = $_price;
+    }
+
+    public function getType()
+    {
+        return get_class();
     }
 }
-
-class Type extends Category
-{
-    public $type;
-
-    function __construct($_name, $_price, $_category, $_type)
-    {
-        parent::__construct($_name, $_price, $_category);
-        $this->type = $_type;
-    }
-}
-
-// Products
-$osso_smart = new Type('Osso smart', 10, 'Cane', 'Gioco');
-$crocchette = new Type('Crocchette', 5,  'Gatto', 'Cibo');
-$lettino = new Type('Lettino', 20, 'Gatto', 'Cuccia');
