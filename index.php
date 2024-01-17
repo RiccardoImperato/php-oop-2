@@ -13,7 +13,7 @@ $cat = new Category('Gatto', '<i class="fa-solid fa-cat"></i>');
 $collare = new Product('Collare', 5, $dog);
 
 //Toy
-$osso_smart = new Toy('Osso smart', 10, $dog);
+$osso_smart = new Toy('Osso smart', 15, $dog);
 $osso_smart->setMaterial('Plastica');
 
 // Food

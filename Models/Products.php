@@ -1,18 +1,26 @@
 <?php
 require_once __DIR__ . '/Category.php';
+require_once __DIR__ . '/../Traits/Price.php';
 
 class Product
 {
+    use PriceTrait;
+
     private $name;
-    private $price;
+    // private $price;
     private $category;
     public $type = '';
 
     function __construct($_name, $_price, Category $_category)
     {
         $this->setName($_name);
-        $this->setPrice($_price);
         $this->setCategory($_category);
+
+        try {
+            $this->setPrice($_price);
+        } catch (Exception $error) {
+            echo "Errore durante la creazione del prodotto:  " . $error->getMessage();
+        }
     }
 
     /**
@@ -49,24 +57,6 @@ class Product
     public function setCategory($_category)
     {
         $this->category = $_category;
-    }
-
-    /**
-     * Get the value of price
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set the value of price
-     *
-     * @return  self
-     */
-    public function setPrice($_price)
-    {
-        $this->price = $_price;
     }
 
     public function getType()
